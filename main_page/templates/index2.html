@@ -1,0 +1,28 @@
+{% if user.is_authenticated %}
+    <a href="/accounts/logout">Выход</a>
+    <a href="/korzina">Корзина</a>
+{% else %}
+    <a href="/accounts/login">Войти в аккаунт</a>
+{% endif %}
+<hr>
+
+
+<form action="/search" method="post">
+    {% csrf_token %}
+    <input type="text" name="search" placeholder="Поиск">
+    <button>Поиск</button>
+</form>
+
+Категории: <hr>
+{% for i in category %}
+<a href="/category/{{i.id}}">{{ i.category_name }}</a>
+
+{% endfor %}
+<hr>
+
+Продукты: <hr>
+{% for i in product %}
+<a href="/product/{{i.id}}">{{ i.product_name }}</a>
+
+{% endfor %}
+<hr>
